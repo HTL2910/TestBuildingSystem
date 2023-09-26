@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 789552924}
   - component: {fileID: 789552923}
   - component: {fileID: 789552922}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,11 +539,11 @@ MonoBehaviour:
   speed: 12
   gravity: -19.62
   jumpHeight: 3
-  groundCheck: {fileID: 0}
+  groundCheck: {fileID: 274477197}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
