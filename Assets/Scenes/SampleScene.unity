@@ -388,7 +388,7 @@ TerrainCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 70be85eee4e34ae41a06ccc122c163d8, type: 2}
@@ -500,8 +500,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824810644}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.48, y: 1.47, z: 7.87}
+  m_LocalRotation: {x: -0.024417922, y: 0.34356064, z: -0.10971175, w: 0.93238044}
+  m_LocalPosition: {x: 11.352287, y: 1.4871805, z: 7.952223}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -509,7 +509,7 @@ Transform:
   - {fileID: 963194228}
   - {fileID: 274477197}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.711, y: 40.264, z: -12.795}
 --- !u!114 &824810647
 MonoBehaviour:
   m_ObjectHideFlags: 0
