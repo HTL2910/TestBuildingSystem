@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 4677745771901032}
   - component: {fileID: 95674028643950644}
   m_Layer: 0
-  m_Name: Rabbit 1
+  m_Name: ChildRabbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
