@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController characterController;
@@ -36,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity*Time.deltaTime);
-
+        if(gameObject.transform.position.y<=-10)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }    
     }
 }
