@@ -7,11 +7,7 @@ public class MouseMovement : MonoBehaviour
     public float mouseSensitivity = 100f;
     float xRotation = 0f;
     float yRotation = 0f;
-
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+    bool isMouseLocked=true;
     private void Update()
     {
         float mouseX= Input.GetAxis("Mouse X")*mouseSensitivity*Time.deltaTime;
@@ -22,5 +18,22 @@ public class MouseMovement : MonoBehaviour
         yRotation += mouseX;
 
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            isMouseLocked=!isMouseLocked;
+            LockedMouse(isMouseLocked);
+        }
     }
+    private void LockedMouse(bool isLocked) 
+    { 
+        if(isLocked)
+        {
+            Cursor.lockState= CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = (CursorLockMode.None);
+        }    
+    }
+
 }

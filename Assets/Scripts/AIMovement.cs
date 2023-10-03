@@ -55,7 +55,7 @@ public class AIMovement : MonoBehaviour
             }
             if (walkCounter <= 0)
             {
-                stopPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                stopPosition = new Vector3(transform.position.x, 0f, transform.position.z);
                 isWalking = false;
                 transform.position = stopPosition;
                 animator.SetBool("isRunning", false);
