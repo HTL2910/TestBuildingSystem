@@ -1599,6 +1599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1 &536730122 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2795318547083921244, guid: dc20bf501e8161b40859eb66568d49f6, type: 3}
@@ -2141,6 +2142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1001 &741503997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2520,6 +2522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1 &824810644
 GameObject:
   m_ObjectHideFlags: 0
@@ -2763,6 +2766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1001 &881404315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2913,6 +2917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1 &940211228
 GameObject:
   m_ObjectHideFlags: 0
@@ -3128,6 +3133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1001 &994904616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3872,6 +3878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1 &1253636406
 GameObject:
   m_ObjectHideFlags: 0
@@ -4068,6 +4075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1001 &1287115648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4200,6 +4208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1001 &1331951729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4409,6 +4418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!4 &1394556752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4677745771901032, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
@@ -4432,6 +4442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1 &1425343982
 GameObject:
   m_ObjectHideFlags: 0
@@ -4743,6 +4754,74 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7277753987416835437, guid: b7e2dc14434ef88449d13759ec962f81, type: 3}
   m_PrefabInstance: {fileID: 126326814}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1567525913
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 117232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      propertyPath: m_Name
+      value: Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 417232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 417232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 417232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 27.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 417232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99767023
+      objectReference: {fileID: 0}
+    - target: {fileID: 417232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.06424781
+      objectReference: {fileID: 0}
+    - target: {fileID: 417232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.0014743649
+      objectReference: {fileID: 0}
+    - target: {fileID: 417232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.022894626
+      objectReference: {fileID: 0}
+    - target: {fileID: 417232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 417232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 417232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656195736117776984, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2656195736117776984, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 117232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1769763194}
+    - targetCorrespondingSourceObject: {fileID: 117232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1769763193}
+  m_SourcePrefab: {fileID: 100100000, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
 --- !u!4 &1578267670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4908765312130676, guid: 47356d574ebc3a545bfaef26eb02a2ea, type: 3}
@@ -4761,6 +4840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!4 &1584874619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4908765312130676, guid: d0fef57aa8c0772448a3a57390d3c153, type: 3}
@@ -4846,6 +4926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1001 &1603076008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5439,6 +5520,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
+--- !u!1 &1769763187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 117232, guid: d2f192c371f0f7f408ef6d3471aa68ca, type: 3}
+  m_PrefabInstance: {fileID: 1567525913}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1769763193
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769763187}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 79.52922, y: 19.712214, z: 68.44005}
+  m_Center: {x: 7.3689723, y: -0.41045123, z: -0.3119516}
+--- !u!65 &1769763194
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769763187}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 79.690445, y: 19.712214, z: 68.935165}
+  m_Center: {x: 7.5334096, y: -0.41045123, z: -0.13776541}
 --- !u!1001 &1784867423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5581,6 +5710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1001 &1827880313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5656,6 +5786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1001 &1841980614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5803,6 +5934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1 &1963767006 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2795318547083921244, guid: dc20bf501e8161b40859eb66568d49f6, type: 3}
@@ -5821,6 +5953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1001 &1969123517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6013,6 +6146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1001 &2015545551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6091,6 +6225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1 &2065059582
 GameObject:
   m_ObjectHideFlags: 0
@@ -6311,6 +6446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Tree
+  playerInRange: 0
 --- !u!1001 &2104793979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6388,3 +6524,4 @@ SceneRoots:
   - {fileID: 940211230}
   - {fileID: 1253636408}
   - {fileID: 508900330}
+  - {fileID: 1567525913}
