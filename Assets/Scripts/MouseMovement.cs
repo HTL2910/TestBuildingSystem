@@ -10,19 +10,23 @@ public class MouseMovement : MonoBehaviour
     bool isMouseLocked=true;
     private void Update()
     {
-        float mouseX= Input.GetAxis("Mouse X")*mouseSensitivity*Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        yRotation += mouseX;
-
-        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
-        if(Input.GetKeyDown(KeyCode.L))
+        if (InventorySystem.instance.isOpen == false)
         {
-            isMouseLocked=!isMouseLocked;
-            LockedMouse(isMouseLocked);
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            yRotation += mouseX;
+
+            transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                isMouseLocked = !isMouseLocked;
+                LockedMouse(isMouseLocked);
+            }
         }
+       
     }
     private void LockedMouse(bool isLocked) 
     { 
