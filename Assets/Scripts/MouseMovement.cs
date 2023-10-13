@@ -10,7 +10,7 @@ public class MouseMovement : MonoBehaviour
     bool isMouseLocked=true;
     private void Update()
     {
-        if (InventorySystem.instance.isOpen == false)
+        if(!InventorySystem.instance.isOpen &&!CraftingSystem.instance.isOpen)
         {
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
