@@ -9,6 +9,7 @@ public class SelectionManager : MonoBehaviour
     public bool onTarget;
     public GameObject interaction_info_UI;
     private TextMeshProUGUI interactionText;
+    public GameObject selectedGameObject;
     private void Awake()
     {
         if (instance == null)
@@ -38,6 +39,7 @@ public class SelectionManager : MonoBehaviour
             {
                 interactionText.text = interactableObject.GetItemName();
                 onTarget = true;
+                selectedGameObject = interactableObject.gameObject;
                 interaction_info_UI.gameObject.SetActive(true);
             }
             else
