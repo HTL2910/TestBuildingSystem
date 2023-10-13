@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
@@ -12,8 +13,17 @@ public class InteractableObject : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && playerInRange && SelectionManager.instance.onTarget)
         {
-            Debug.Log("add item");
-            Destroy(gameObject);
+            //if the inventory is not full
+            if(!InventorySystem.instance.CheckIfFull())
+            {
+                InventorySystem.instance.AddToInventory(itemName);
+                Destroy(gameObject);
+            }   
+            else
+            {
+                Debug.Log("inventory is full");
+            }    
+            
         }
     }
     private void OnTriggerEnter(Collider other)
