@@ -78,13 +78,12 @@ public class InventorySystem : MonoBehaviour
     {
         foreach(GameObject slot in slotList)
         {
-            if(slot.transform.childCount==0)
+            if(slot.transform.childCount == 0)
             {
                 return slot;
             }
-            
         }
-        return new GameObject();
+        return null;
     }
     public bool CheckIfFull()
     {
@@ -106,36 +105,37 @@ public class InventorySystem : MonoBehaviour
             return false;
         }
     }    
-    public void RemoveItem(string nameToRemove,int amountToRemove)
+    public void RemoveItem(string nameToRemove, int amountToRemove)
     {
         int counter = amountToRemove;
-        Debug.Log("counter: " + counter);
         for (var i = slotList.Count - 1; i >= 0; i--)
         {
             if (slotList[i].transform.childCount > 0)
             {
-                if (slotList[i].transform.GetChild(0).name == nameToRemove + "(CLone)" && counter != 0)
+                if (slotList[i].transform.GetChild(0).name == nameToRemove + "(Clone)" && counter != 0)
                 {
                     Destroy(slotList[i].transform.GetChild(0).gameObject);
                     counter -= 1;
+                    itemList.Remove(nameToRemove);
                 }
             }
-            
         }
+        ReCalculeList();
     }
     public void ReCalculeList()
     {
-        itemList.Clear();
+        List<string> tempList = new List<string>();
         foreach(GameObject slot in slotList)
         {
-            if( slot.transform.childCount>0)
+            if(slot.transform.childCount > 0)
             {
-                string name=slot.transform.GetChild(0).name;
+                string name = slot.transform.GetChild(0).name;
                 string str2 = "(Clone)";
                 string result = name.Replace(str2,"");
-
-                itemList.Add(result);
+                tempList.Add(result);
             }    
-        }    
+        }
+        itemList.Clear();
+        itemList.AddRange(tempList);
     }    
 }

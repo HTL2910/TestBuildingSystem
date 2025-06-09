@@ -44,7 +44,7 @@ public class CraftingSystem : MonoBehaviour
         AxeReq1 = toolsScreenUI.transform.Find("Axe").transform.Find("req1").GetComponent<TextMeshProUGUI>();
         AxeReq2 = toolsScreenUI.transform.Find("Axe").transform.Find("req2").GetComponent<TextMeshProUGUI>();
 
-        craftAxeBTN = toolsScreenUI.transform.Find("Axe").transform.Find("Button").GetComponent<Button>();
+        craftAxeBTN = toolsScreenUI.transform.Find("Axe").transform.Find("CrafButton").GetComponent<Button>();
         craftAxeBTN.onClick.AddListener(delegate { CraftAnyItem(AxeBLP); });
     }
 
@@ -55,31 +55,47 @@ public class CraftingSystem : MonoBehaviour
     }
     void CraftAnyItem(BluePrint blueprintToCraft)
     {
-        Debug.Log("Craft any Item");
+        // Kiểm tra nguyên liệu trước
+        if (!HasEnoughMaterials(blueprintToCraft))
+        {
+            Debug.Log("Not enough materials!");
+            return;
+        }
+
+        // Thêm item mới
         InventorySystem.instance.AddToInventory(blueprintToCraft.itemName);
 
-        if(blueprintToCraft.numOfRequirements==1)
+        // Xóa nguyên liệu
+        if(blueprintToCraft.numOfRequirements == 1)
         {
             InventorySystem.instance.RemoveItem(blueprintToCraft.Req1, blueprintToCraft.Req1amount);
         }    
-        else if(blueprintToCraft.numOfRequirements==2)
+        else if(blueprintToCraft.numOfRequirements == 2)
         {
-            Debug.Log("Have" + blueprintToCraft.numOfRequirements);
             InventorySystem.instance.RemoveItem(blueprintToCraft.Req1, blueprintToCraft.Req1amount);
             InventorySystem.instance.RemoveItem(blueprintToCraft.Req2, blueprintToCraft.Req2amount);
         }
-        //replace Stone
-        StartCoroutine(calculate());
 
-        RefreshNeededItems();
-
-    }   
-
-    public IEnumerator calculate()
-    {
-        yield return new WaitForSeconds(1f);
+        // Cập nhật inventory ngay lập tức
         InventorySystem.instance.ReCalculeList();
-    }    
+        RefreshNeededItems();
+    }
+
+    private bool HasEnoughMaterials(BluePrint blueprint)
+    {
+        int req1Count = 0;
+        int req2Count = 0;
+        
+        foreach(string item in InventorySystem.instance.itemList)
+        {
+            if(item == blueprint.Req1) req1Count++;
+            if(item == blueprint.Req2) req2Count++;
+        }
+        
+        return req1Count >= blueprint.Req1amount && 
+               (blueprint.numOfRequirements == 1 || req2Count >= blueprint.Req2amount);
+    }
+
     // Update is called once per frame
     void Update()
     {
