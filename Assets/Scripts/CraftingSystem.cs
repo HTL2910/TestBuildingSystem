@@ -99,7 +99,6 @@ public class CraftingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RefreshNeededItems();
         if (Input.GetKeyDown(KeyCode.C)&& !isOpen)
         {
             craftingScreenUI.SetActive(true);
@@ -119,7 +118,7 @@ public class CraftingSystem : MonoBehaviour
             isOpen = false;
         }
     }
-    private void RefreshNeededItems()
+    public void RefreshNeededItems()
     {
         int stone_count = 0;
         int stick_count=0;

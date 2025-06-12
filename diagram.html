@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Diagram</title>
+    <title>Game Architecture Sequence Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 { 
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .diagram {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+        }
+        .description {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
         .module { margin-bottom: 20px; }
         .module h2 { color: #333; }
         .module ul { list-style-type: none; padding-left: 20px; }
@@ -13,7 +43,74 @@
     </style>
 </head>
 <body>
-    <h1>Project Diagram</h1>
+    <div class="container">
+        <h1>Game Architecture Sequence Diagram</h1>
+        
+        <div class="description">
+            <h2>Game Flow Description</h2>
+            <p>This diagram shows the sequence of interactions between different game components:</p>
+            <ul>
+                <li>Player Movement and Interaction</li>
+                <li>Inventory System</li>
+                <li>Crafting System</li>
+                <li>Item Collection</li>
+            </ul>
+        </div>
+
+        <div class="diagram">
+            <div class="mermaid">
+                sequenceDiagram
+                    participant Player
+                    participant SelectionManager
+                    participant InteractableObject
+                    participant InventorySystem
+                    participant CraftingSystem
+                    participant BluePrint
+
+                    %% Player Movement and Item Collection
+                    Player->>SelectionManager: Move near item
+                    SelectionManager->>InteractableObject: Check if in range
+                    InteractableObject-->>SelectionManager: Return item info
+                    SelectionManager-->>Player: Show interaction UI
+
+                    %% Item Collection
+                    Player->>InteractableObject: Click to collect
+                    InteractableObject->>InventorySystem: Check if inventory full
+                    alt Inventory not full
+                        InventorySystem->>InventorySystem: AddToInventory()
+                        InventorySystem->>InteractableObject: Destroy item
+                    else Inventory full
+                        InventorySystem-->>Player: Show "inventory full" message
+                    end
+
+                    %% Crafting System
+                    Player->>CraftingSystem: Press 'C' to open
+                    CraftingSystem->>InventorySystem: Get inventory items
+                    InventorySystem-->>CraftingSystem: Return item list
+                    CraftingSystem->>BluePrint: Check requirements
+                    BluePrint-->>CraftingSystem: Return requirements
+                    
+                    alt Has enough materials
+                        Player->>CraftingSystem: Click craft button
+                        CraftingSystem->>InventorySystem: Remove materials
+                        InventorySystem->>InventorySystem: ReCalculeList()
+                        InventorySystem->>CraftingSystem: Add crafted item
+                    else Not enough materials
+                        CraftingSystem-->>Player: Show "not enough materials"
+                    end
+
+                    %% Inventory Management
+                    Player->>InventorySystem: Press 'I' to open
+                    InventorySystem->>InventorySystem: Toggle inventory UI
+                    alt Inventory open
+                        InventorySystem-->>Player: Show inventory items
+                    else Inventory closed
+                        InventorySystem-->>Player: Hide inventory
+                    end
+            </div>
+        </div>
+    </div>
+
     <div class="module">
         <h2>Scripts</h2>
         <ul>
@@ -77,5 +174,23 @@
             <li>Fantasy Skybox FREE</li>
         </ul>
     </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            sequence: {
+                showSequenceNumbers: true,
+                actorMargin: 50,
+                messageMargin: 40,
+                mirrorActors: false,
+                bottomMarginAdj: 10,
+                useMaxWidth: true,
+                width: 150,
+                height: 65
+            }
+        });
+    </script>
 </body>
 </html> 

@@ -10,6 +10,8 @@ public class SelectionManager : MonoBehaviour
     public GameObject interaction_info_UI;
     private TextMeshProUGUI interactionText;
     public GameObject selectedGameObject;
+    public Image centerDotImage;
+    public Image handIcon;
     private void Awake()
     {
         if (instance == null)
@@ -41,16 +43,31 @@ public class SelectionManager : MonoBehaviour
                 onTarget = true;
                 selectedGameObject = interactableObject.gameObject;
                 interaction_info_UI.gameObject.SetActive(true);
+                if(interactableObject.CompareTag("Pickable"))
+                {
+                    handIcon.gameObject.SetActive(true);
+                    centerDotImage.gameObject.SetActive(false);
+                }
+                else
+                {
+                    handIcon.gameObject.SetActive(false);
+                    centerDotImage.gameObject.SetActive(true);
+                }
             }
             else
             {
                 onTarget = false;
                 interaction_info_UI.gameObject.SetActive(false);
+                handIcon.gameObject.SetActive(false);
+                centerDotImage.gameObject.SetActive(true);
             }
         }
         else
         {
             onTarget = false;
+            interaction_info_UI.gameObject.SetActive(false);
+            handIcon.gameObject.SetActive(false);
+            centerDotImage.gameObject.SetActive(true);
         }
     }
 }

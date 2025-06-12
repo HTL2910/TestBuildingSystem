@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem instance { get; set; }
-
+    [Header("Inventory")]
     public GameObject inventoryScreenUI;
     public List<GameObject> slotList=new List<GameObject>();
     public List<string > itemList=new List<string>();
@@ -14,6 +16,12 @@ public class InventorySystem : MonoBehaviour
     private GameObject whatSlotToEquip;
     public bool isOpen;
     //public bool isFull;
+
+    //Pickup Popup
+    [Header("Pickup Popup")]
+    public GameObject pickupALert;
+    public TextMeshProUGUI pickupName;
+    public Image pickupImage;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -72,7 +80,10 @@ public class InventorySystem : MonoBehaviour
         itemToAdd.transform.SetParent(whatSlotToEquip.transform);
 
         itemList.Add(itemName);
+        TriggerPickupPopup(itemName,itemToAdd.GetComponent<Image>().sprite);
 
+        ReCalculeList();
+        CraftingSystem.instance.RefreshNeededItems();
     }
     private GameObject FindNextEmptySlot()
     {
@@ -105,6 +116,12 @@ public class InventorySystem : MonoBehaviour
             return false;
         }
     }    
+    private void TriggerPickupPopup(string itemName,Sprite itemSprite)
+    {
+        pickupALert.SetActive(true);
+        pickupName.text = itemName;
+        pickupImage.sprite = itemSprite;
+    }
     public void RemoveItem(string nameToRemove, int amountToRemove)
     {
         int counter = amountToRemove;
@@ -121,6 +138,7 @@ public class InventorySystem : MonoBehaviour
             }
         }
         ReCalculeList();
+        CraftingSystem.instance.RefreshNeededItems();
     }
     public void ReCalculeList()
     {
