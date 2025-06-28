@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8135990298974973502}
   - component: {fileID: 4810958046953422239}
   - component: {fileID: 2263420532316490166}
+  - component: {fileID: 5430289933285356776}
   m_Layer: 5
   m_Name: Rock
   m_TagString: Untagged
@@ -89,7 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc213ed05690554dacba7b40e107025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
 --- !u!225 &2263420532316490166
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -102,3 +102,26 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &5430289933285356776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203850953618220723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec63a1cc7707504799361ab852b7287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTrashable: 0
+  itemInfoUI_itemName: {fileID: 0}
+  itemInfoUI_itemDescription: {fileID: 0}
+  itemInfoUI_itemFunctionality: {fileID: 0}
+  thisName: Rock
+  thisDescription: 'A small, rough natural stone found abundantly in the environment. '
+  thisFunctionality: Crafting Material,Tool Repair
+  isConsumable: 0
+  healthEffect: 0
+  caloriesEffect: 0
+  hydrationsEffect: 0

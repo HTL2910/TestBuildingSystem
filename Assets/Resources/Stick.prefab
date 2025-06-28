@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4877582167088173984}
   - component: {fileID: 7484522961594117145}
   - component: {fileID: 5898950694977851119}
+  - component: {fileID: -2219086996525461150}
   m_Layer: 5
   m_Name: Stick
   m_TagString: Untagged
@@ -101,3 +102,23 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &-2219086996525461150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033773318411454771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec63a1cc7707504799361ab852b7287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTrashable: 0
+  thisName: Stick
+  thisDescription: Stick in environment
+  thisFunctionality: To create Tool
+  isConsumable: 1
+  healthEffect: 10
+  caloriesEffect: 50
+  hydrationsEffect: 50
