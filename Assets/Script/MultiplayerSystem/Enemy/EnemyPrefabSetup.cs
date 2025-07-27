@@ -19,7 +19,7 @@ namespace MultiplayerSystem.Enemy
         
         [Header("UI Components")]
         public GameObject enemyUI;
-        public HealthBar healthBar;
+        public MultiplayerSystem.UI.HealthBar healthBar;
         
         void Awake()
         {

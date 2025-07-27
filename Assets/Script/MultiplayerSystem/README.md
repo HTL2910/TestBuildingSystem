@@ -18,61 +18,47 @@ Hệ thống multiplayer hoàn chỉnh cho Unity với Photon PUN 2, bao gồm q
 - Photon PUN 2 (đã cài đặt)
 - AppID Photon (đã cấu hình: `your appID`)
 
-## 🛠️ Setup nhanh
+## 🛠️ Setup nhanh (AUTO)
 
-### 1. Tạo MultiplayerManager trong Scene
+### Cách đơn giản nhất - Tự động setup:
 
+1. **Tạo GameObject mới** trong scene
+2. **Thêm component `MultiplayerTestSetup`**
+3. **Chạy game** - Script sẽ tự động tạo tất cả cần thiết:
+   - MultiplayerManager
+   - Test Player Prefab (màu xanh)
+   - Test Enemy Prefab (màu đỏ)  
+   - Test UI Canvas với nút Connect
+
+### Test ngay lập tức:
+
+1. **Chạy game** - Sẽ thấy UI với nút "Connect to Server"
+2. **Click nút Connect** - Kết nối Photon server
+3. **Tạo phòng** - Sử dụng Context Menu "Create Room"
+4. **Build 2 instances** để test multiplayer
+
+### Cách thủ công (nếu muốn tùy chỉnh):
+
+#### 1. Tạo MultiplayerManager
 ```csharp
-// Tự động setup khi chạy game
 GameObject managerGO = new GameObject("MultiplayerManager");
 MultiplayerManager manager = managerGO.AddComponent<MultiplayerManager>();
 ```
 
-Hoặc sử dụng script `MultiplayerManagerSetup`:
-- Thêm component `MultiplayerManagerSetup` vào GameObject bất kỳ
-- Chọn player prefab trong inspector
-- Script sẽ tự động tạo MultiplayerManager
+#### 2. Tạo Player Prefab
+- Tạo GameObject mới
+- Thêm component `PlayerPrefabSetup`
+- Script tự động thêm: `PhotonView`, `NetworkPlayer`, `Rigidbody`, `Collider`
 
-### 2. Tạo Player Prefab
+#### 3. Tạo Enemy Prefab  
+- Tạo GameObject mới
+- Thêm component `EnemyPrefabSetup`
+- Script tự động thêm: `PhotonView`, `NetworkEnemy`, `Rigidbody`, `Collider`
 
-1. Tạo GameObject mới
-2. Thêm component `PlayerPrefabSetup`
-3. Script sẽ tự động thêm tất cả components cần thiết:
-   - `PhotonView`
-   - `NetworkPlayer`
-   - `Rigidbody`
-   - `Collider`
-4. Tạo prefab từ GameObject này
-
-### 3. Tạo Enemy Prefab
-
-1. Tạo GameObject mới
-2. Thêm component `EnemyPrefabSetup`
-3. Script sẽ tự động thêm tất cả components cần thiết:
-   - `PhotonView`
-   - `NetworkEnemy`
-   - `Rigidbody`
-   - `Collider`
-   - `Animator` (nếu có)
-4. Tạo prefab từ GameObject này
-
-### 4. Setup UI
-
-1. Tạo Canvas với UI panels:
-   - Main Menu Panel
-   - Connecting Panel
-   - Lobby Panel
-   - Game Panel
-   - Settings Panel
-
-2. Thêm component `MultiplayerUIManager` vào Canvas
-3. Assign tất cả UI elements trong inspector
-
-### 5. Setup Game Manager
-
-1. Tạo GameObject "GameManager"
-2. Thêm component `MultiplayerGameManager`
-3. Assign player/enemy prefabs và spawn points
+#### 4. Setup UI
+- Tạo Canvas với `MultiplayerUIManager`
+- Tạo các panels: Main Menu, Connecting, Lobby, Game
+- Assign UI elements trong inspector
 
 ## 🎮 Sử dụng
 

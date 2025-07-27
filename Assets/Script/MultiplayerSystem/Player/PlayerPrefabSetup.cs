@@ -18,7 +18,7 @@ namespace MultiplayerSystem.Player
         
         [Header("UI Components")]
         public GameObject playerUI;
-        public HealthBar healthBar;
+        public MultiplayerSystem.UI.HealthBar healthBar;
         
         void Awake()
         {

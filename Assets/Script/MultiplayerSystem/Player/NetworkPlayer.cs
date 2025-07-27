@@ -54,6 +54,10 @@ namespace MultiplayerSystem.Player
             
             // Initialize player data
             playerData = new PlayerData();
+            
+            // Initialize network variables
+            networkPosition = transform.position;
+            networkRotation = transform.rotation;
         }
         
         void Start()
@@ -71,7 +75,9 @@ namespace MultiplayerSystem.Player
             {
                 // Smooth interpolation for other players
                 transform.position = Vector3.Lerp(transform.position, networkPosition, Time.deltaTime * 10f);
-                transform.rotation = Quaternion.Lerp(transform.rotation, networkRotation, Time.deltaTime * 10f);
+                
+                // Use Slerp for rotation to avoid Quaternion issues
+                transform.rotation = Quaternion.Slerp(transform.rotation, networkRotation, Time.deltaTime * 10f);
             }
         }
         
@@ -216,7 +222,7 @@ namespace MultiplayerSystem.Player
             }
         }
         
-        void Respawn()
+        public void Respawn()
         {
             if (!photonView.IsMine) return;
             

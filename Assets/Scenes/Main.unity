@@ -6982,6 +6982,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Tree
   playerInRange: 0
+--- !u!1 &950218026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 950218027}
+  m_Layer: 0
+  m_Name: MultiPlayerSetup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &950218027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950218026}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 412.1551, y: -225.16219, z: 329.39938}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &957301119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14954,3 +14985,4 @@ SceneRoots:
   - {fileID: 940211230}
   - {fileID: 1637980030}
   - {fileID: 1676828931}
+  - {fileID: 950218027}

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: a3ea1293-81a2-4908-b4d6-e08319c6a018
+    AppIdRealtime: 42f74bca-385c-453b-af95-c473500c03fb
     AppIdFusion: 
-    AppIdChat: a3ea1293-81a2-4908-b4d6-e08319c6a018
+    AppIdChat: 42f74bca-385c-453b-af95-c473500c03fb
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
@@ -44,6 +44,8 @@ MonoBehaviour:
   - RPC_TakeDamage
   - TakeHitRPC
   - AttackRPC
+  - EndGameRPC
+  - StartGameRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

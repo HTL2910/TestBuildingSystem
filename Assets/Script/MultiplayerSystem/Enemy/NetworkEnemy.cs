@@ -62,6 +62,10 @@ namespace MultiplayerSystem.Enemy
             if (animator == null) animator = GetComponent<Animator>();
             
             spawnPosition = transform.position;
+            
+            // Initialize network variables
+            networkPosition = transform.position;
+            networkRotation = transform.rotation;
         }
         
         void Start()
@@ -81,7 +85,9 @@ namespace MultiplayerSystem.Enemy
             {
                 // Smooth interpolation for other clients
                 transform.position = Vector3.Lerp(transform.position, networkPosition, Time.deltaTime * 10f);
-                transform.rotation = Quaternion.Lerp(transform.rotation, networkRotation, Time.deltaTime * 10f);
+                
+                // Use Slerp for rotation to avoid Quaternion issues
+                transform.rotation = Quaternion.Slerp(transform.rotation, networkRotation, Time.deltaTime * 10f);
             }
         }
         
