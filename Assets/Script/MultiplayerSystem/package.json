@@ -1,0 +1,52 @@
+{
+  "name": "com.yourcompany.universalmultiplayersystem",
+  "version": "1.0.0",
+  "displayName": "Universal Multiplayer System",
+  "description": "A complete multiplayer system for Unity with Photon PUN 2. Includes room management, player/enemy networking, health systems, AI, and UI components.",
+  "unity": "2019.4",
+  "keywords": [
+    "multiplayer",
+    "photon",
+    "pun2",
+    "networking",
+    "room",
+    "lobby",
+    "player",
+    "enemy",
+    "health",
+    "ai",
+    "ui",
+    "synchronization",
+    "rpc",
+    "game",
+    "fps",
+    "rpg",
+    "shooter"
+  ],
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com",
+    "url": "https://yourwebsite.com"
+  },
+  "dependencies": {
+    "com.unity.ugui": "1.0.0",
+    "com.exitgames.photon.pun2": "2.0.0"
+  },
+  "samples": [
+    {
+      "displayName": "Basic Multiplayer Setup",
+      "description": "Basic multiplayer setup with room creation and player spawning",
+      "path": "Samples~/BasicMultiplayerSetup"
+    },
+    {
+      "displayName": "FPS Multiplayer Game",
+      "description": "Complete FPS multiplayer game with enemies, health bars, and scoring",
+      "path": "Samples~/FPSMultiplayerGame"
+    },
+    {
+      "displayName": "RPG Multiplayer Game",
+      "description": "RPG-style multiplayer with teams, experience, and advanced player data",
+      "path": "Samples~/RPGMultiplayerGame"
+    }
+  ]
+} 
