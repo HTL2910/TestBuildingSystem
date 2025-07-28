@@ -46,6 +46,9 @@ MonoBehaviour:
   - AttackRPC
   - EndGameRPC
   - StartGameRPC
+  - AddToInventoryRPC
+  - PickupItemRPC
+  - RemoveItemRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

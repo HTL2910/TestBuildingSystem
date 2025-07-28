@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().buildIndex);
+                PhotonNetwork.LoadLevel("Lobby");
             }
         }    
     }
