@@ -189,6 +189,7 @@ namespace MultiplayerSystem.Core
             {
                 // Set room as not open (game in progress)
                 PhotonNetwork.CurrentRoom.IsOpen = false;
+                UpdateGameState(GameState.InGame);
                 OnGameStarted?.Invoke();
             }
         }
@@ -199,6 +200,7 @@ namespace MultiplayerSystem.Core
             {
                 // Set room as open (game ended)
                 PhotonNetwork.CurrentRoom.IsOpen = true;
+                UpdateGameState(GameState.InRoom);
                 OnGameEnded?.Invoke();
             }
         }
@@ -265,7 +267,37 @@ namespace MultiplayerSystem.Core
             Debug.LogError($"Failed to join room: {message}");
         }
         
-
+        #endregion
+        
+        #region Public Methods
+        
+        public int GetPlayerCount()
+        {
+            if (PhotonNetwork.CurrentRoom != null)
+            {
+                return PhotonNetwork.CurrentRoom.PlayerCount;
+            }
+            return 0;
+        }
+        
+        public string GetRoomName()
+        {
+            if (PhotonNetwork.CurrentRoom != null)
+            {
+                return PhotonNetwork.CurrentRoom.Name;
+            }
+            return "No Room";
+        }
+        
+        public bool IsConnected()
+        {
+            return PhotonNetwork.IsConnected;
+        }
+        
+        public bool IsInRoom()
+        {
+            return PhotonNetwork.InRoom;
+        }
         
         #endregion
     }

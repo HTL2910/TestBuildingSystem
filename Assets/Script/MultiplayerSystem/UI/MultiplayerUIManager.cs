@@ -166,23 +166,23 @@ namespace MultiplayerSystem.UI
         
         #region Event Callbacks
         
-        void OnGameStateChanged(GameState newState)
+        void OnGameStateChanged(MultiplayerSystem.Core.GameState newState)
         {
             switch (newState)
             {
-                case GameState.Disconnected:
+                case MultiplayerSystem.Core.GameState.Disconnected:
                     ShowMainMenu();
                     break;
-                case GameState.Connecting:
+                case MultiplayerSystem.Core.GameState.Connecting:
                     ShowConnecting();
                     break;
-                case GameState.Connected:
+                case MultiplayerSystem.Core.GameState.Connected:
                     ShowLobby();
                     break;
-                case GameState.InRoom:
+                case MultiplayerSystem.Core.GameState.InRoom:
                     ShowGame();
                     break;
-                case GameState.InGame:
+                case MultiplayerSystem.Core.GameState.InGame:
                     ShowGame();
                     break;
             }
@@ -226,7 +226,7 @@ namespace MultiplayerSystem.UI
         
         #endregion
         
-        #region UI Panel Management
+        #region UI Methods
         
         void ShowMainMenu()
         {
@@ -245,6 +245,7 @@ namespace MultiplayerSystem.UI
         void ShowLobby()
         {
             SetActivePanel(lobbyPanel);
+            UpdateRoomInfo();
         }
         
         void ShowGame()
@@ -261,60 +262,37 @@ namespace MultiplayerSystem.UI
         
         void SetActivePanel(GameObject activePanel)
         {
-            if (mainMenuPanel != null) mainMenuPanel.SetActive(mainMenuPanel == activePanel);
-            if (connectingPanel != null) connectingPanel.SetActive(connectingPanel == activePanel);
-            if (lobbyPanel != null) lobbyPanel.SetActive(lobbyPanel == activePanel);
-            if (gamePanel != null) gamePanel.SetActive(gamePanel == activePanel);
-            if (settingsPanel != null) settingsPanel.SetActive(settingsPanel == activePanel);
+            // Hide all panels
+            if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
+            if (connectingPanel != null) connectingPanel.SetActive(false);
+            if (lobbyPanel != null) lobbyPanel.SetActive(false);
+            if (gamePanel != null) gamePanel.SetActive(false);
+            if (settingsPanel != null) settingsPanel.SetActive(false);
+            
+            // Show the active panel
+            if (activePanel != null) activePanel.SetActive(true);
         }
-        
-        #endregion
-        
-        #region UI Updates
         
         void UpdatePlayerCount()
         {
-            if (playerCountText != null && Photon.Pun.PhotonNetwork.InRoom)
+            if (playerCountText != null && MultiplayerManager.Instance != null)
             {
-                playerCountText.text = $"Players: {Photon.Pun.PhotonNetwork.CurrentRoom.PlayerCount}/{Photon.Pun.PhotonNetwork.CurrentRoom.MaxPlayers}";
+                playerCountText.text = $"Players: {MultiplayerManager.Instance.GetPlayerCount()}";
             }
         }
         
         void UpdateRoomInfo()
         {
-            if (roomNameText != null && Photon.Pun.PhotonNetwork.InRoom)
+            if (roomNameText != null && MultiplayerManager.Instance != null)
             {
-                roomNameText.text = $"Room: {Photon.Pun.PhotonNetwork.CurrentRoom.Name}";
+                roomNameText.text = $"Room: {MultiplayerManager.Instance.GetRoomName()}";
             }
         }
         
         void UpdatePlayerList()
         {
-            if (playerListContent == null || playerListItemPrefab == null) return;
-            
-            // Clear existing list
-            foreach (Transform child in playerListContent)
-            {
-                Destroy(child.gameObject);
-            }
-            
-            // Add current players
-            if (Photon.Pun.PhotonNetwork.InRoom)
-            {
-                foreach (var player in Photon.Pun.PhotonNetwork.PlayerList)
-                {
-                    GameObject listItem = Instantiate(playerListItemPrefab, playerListContent);
-                    Text playerText = listItem.GetComponentInChildren<Text>();
-                    if (playerText != null)
-                    {
-                        playerText.text = player.NickName;
-                        if (player.IsMasterClient)
-                        {
-                            playerText.text += " (Host)";
-                        }
-                    }
-                }
-            }
+            // TODO: Implement player list update
+            Debug.Log("Update player list");
         }
         
         #endregion

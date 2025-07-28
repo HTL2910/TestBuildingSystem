@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 
-public class InventorySystem : MonoBehaviour
+public class InventorySystem : MonoBehaviourPunCallbacks, IPunObservable
 {
     public GameObject ItemInfoUI;
     public static InventorySystem instance { get; set; }
@@ -12,6 +15,7 @@ public class InventorySystem : MonoBehaviour
     public GameObject inventoryScreenUI;
     public List<GameObject> slotList=new List<GameObject>();
     public List<string > itemList=new List<string>();
+    public PhotonView photonView;
 
     private GameObject itemToAdd;
     private GameObject whatSlotToEquip;
@@ -33,6 +37,9 @@ public class InventorySystem : MonoBehaviour
         { 
             instance = this;
         }
+        
+        // Get PhotonView component
+        if (photonView == null) photonView = GetComponent<PhotonView>();
     }
     private void Start()
     {
@@ -52,6 +59,9 @@ public class InventorySystem : MonoBehaviour
     }
     private void Update()
     {
+        if (photonView == null) return;
+        if (!photonView.IsMine) return;
+        
         if (Input.GetKeyDown(KeyCode.I) && !isOpen)
         {
             Debug.Log("i is pressd");
@@ -74,17 +84,36 @@ public class InventorySystem : MonoBehaviour
 
     public void AddToInventory(string itemName)
     {
-
+        if (photonView == null) return;
+        if (!photonView.IsMine) return;
+        
+        // Call RPC to sync inventory across network
+        photonView.RPC("AddToInventoryRPC", RpcTarget.All, itemName);
+    }
+    
+    [PunRPC]
+    void AddToInventoryRPC(string itemName)
+    {
         whatSlotToEquip = FindNextEmptySlot();
-        itemToAdd = Instantiate(Resources.Load<GameObject>(itemName),
-            whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
-        itemToAdd.transform.SetParent(whatSlotToEquip.transform);
+        if (whatSlotToEquip != null)
+        {
+            itemToAdd = Instantiate(Resources.Load<GameObject>(itemName),
+                whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
+            itemToAdd.transform.SetParent(whatSlotToEquip.transform);
 
-        itemList.Add(itemName);
-        TriggerPickupPopup(itemName,itemToAdd.GetComponent<Image>().sprite);
+            itemList.Add(itemName);
+            
+            if (photonView.IsMine)
+            {
+                TriggerPickupPopup(itemName,itemToAdd.GetComponent<Image>().sprite);
+            }
 
-        ReCalculeList();
-        CraftingSystem.instance.RefreshNeededItems();
+            ReCalculeList();
+            if (CraftingSystem.instance != null)
+            {
+                CraftingSystem.instance.RefreshNeededItems();
+            }
+        }
     }
     private GameObject FindNextEmptySlot()
     {
@@ -125,6 +154,16 @@ public class InventorySystem : MonoBehaviour
     }
     public void RemoveItem(string nameToRemove, int amountToRemove)
     {
+        if (photonView == null) return;
+        if (!photonView.IsMine) return;
+        
+        // Call RPC to sync item removal
+        photonView.RPC("RemoveItemRPC", RpcTarget.All, nameToRemove, amountToRemove);
+    }
+    
+    [PunRPC]
+    void RemoveItemRPC(string nameToRemove, int amountToRemove)
+    {
         int counter = amountToRemove;
         for (var i = slotList.Count - 1; i >= 0; i--)
         {
@@ -139,7 +178,10 @@ public class InventorySystem : MonoBehaviour
             }
         }
         ReCalculeList();
-        CraftingSystem.instance.RefreshNeededItems();
+        if (CraftingSystem.instance != null)
+        {
+            CraftingSystem.instance.RefreshNeededItems();
+        }
     }
     public void ReCalculeList()
     {
@@ -156,5 +198,29 @@ public class InventorySystem : MonoBehaviour
         }
         itemList.Clear();
         itemList.AddRange(tempList);
-    }    
+    }
+    
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // Send inventory data
+            stream.SendNext(itemList.Count);
+            foreach (string item in itemList)
+            {
+                stream.SendNext(item);
+            }
+        }
+        else
+        {
+            // Receive inventory data
+            int itemCount = (int)stream.ReceiveNext();
+            itemList.Clear();
+            for (int i = 0; i < itemCount; i++)
+            {
+                string item = (string)stream.ReceiveNext();
+                itemList.Add(item);
+            }
+        }
+    }
 }

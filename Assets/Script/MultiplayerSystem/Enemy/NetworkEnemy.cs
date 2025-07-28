@@ -344,7 +344,7 @@ namespace MultiplayerSystem.Enemy
         
         NetworkPlayer FindPlayerByPhotonPlayer(Photon.Realtime.Player photonPlayer)
         {
-            NetworkPlayer[] players = FindObjectsByType<NetworkPlayer>(FindObjectsSortMode.None);
+            NetworkPlayer[] players = FindObjectsOfType<NetworkPlayer>();
             foreach (var player in players)
             {
                 if (player.photonView.Owner == photonPlayer)

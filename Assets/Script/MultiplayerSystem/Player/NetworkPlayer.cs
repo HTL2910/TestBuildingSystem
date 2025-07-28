@@ -54,10 +54,6 @@ namespace MultiplayerSystem.Player
             
             // Initialize player data
             playerData = new PlayerData();
-            
-            // Initialize network variables
-            networkPosition = transform.position;
-            networkRotation = transform.rotation;
         }
         
         void Start()
@@ -67,17 +63,15 @@ namespace MultiplayerSystem.Player
         
         void Update()
         {
-            if (photonView.IsMine)
+            if (photonView.IsMine && isInitialized)
             {
                 HandleInput();
             }
             else
             {
-                // Smooth interpolation for other players
+                // Remote player interpolation
                 transform.position = Vector3.Lerp(transform.position, networkPosition, Time.deltaTime * 10f);
-                
-                // Use Slerp for rotation to avoid Quaternion issues
-                transform.rotation = Quaternion.Slerp(transform.rotation, networkRotation, Time.deltaTime * 10f);
+                transform.rotation = Quaternion.Lerp(transform.rotation, networkRotation, Time.deltaTime * 10f);
             }
         }
         
@@ -161,7 +155,7 @@ namespace MultiplayerSystem.Player
                     if (targetPlayer != null && targetPlayer != this)
                     {
                         // Check if friendly fire is allowed
-                        if (MultiplayerManager.Instance.currentGameState == GameState.InGame)
+                        if (MultiplayerManager.Instance.currentGameState == MultiplayerSystem.Core.GameState.InGame)
                         {
                             targetPlayer.TakeDamage(attackDamage, photonView.Owner);
                         }
@@ -216,7 +210,7 @@ namespace MultiplayerSystem.Player
             OnPlayerDeath?.Invoke(this);
             
             // Handle respawn
-            if (MultiplayerManager.Instance.currentGameState == GameState.InGame)
+            if (MultiplayerManager.Instance.currentGameState == MultiplayerSystem.Core.GameState.InGame)
             {
                 Invoke(nameof(Respawn), 3f);
             }
@@ -273,28 +267,42 @@ namespace MultiplayerSystem.Player
                 playerData.isAlive = (bool)stream.ReceiveNext();
                 
                 // Update UI for remote players
-                if (healthBar != null) healthBar.UpdateHealth(playerData.currentHealth, playerData.maxHealth);
+                if (healthBar != null)
+                {
+                    healthBar.UpdateHealth(playerData.currentHealth, playerData.maxHealth);
+                }
             }
         }
         
-        // Public methods for external access
+        #region Public Methods
+        
         public void SetPlayerName(string name)
         {
             playerData.playerName = name;
-            PhotonNetwork.LocalPlayer.NickName = name;
+            if (photonView.IsMine)
+            {
+                MultiplayerManager.Instance.UpdatePlayerData(playerData.playerId, playerData);
+            }
         }
         
         public void SetTeam(string team)
         {
             playerData.team = team;
-            MultiplayerManager.Instance.UpdatePlayerData(playerData.playerId, playerData);
+            if (photonView.IsMine)
+            {
+                MultiplayerManager.Instance.UpdatePlayerData(playerData.playerId, playerData);
+            }
         }
         
         public void AddScore(int points)
         {
             playerData.AddScore(points);
             OnScoreChanged?.Invoke(playerData.score);
-            MultiplayerManager.Instance.UpdatePlayerData(playerData.playerId, playerData);
+            
+            if (photonView.IsMine)
+            {
+                MultiplayerManager.Instance.UpdatePlayerData(playerData.playerId, playerData);
+            }
         }
         
         public bool IsLocalPlayer()
@@ -309,7 +317,9 @@ namespace MultiplayerSystem.Player
         
         public float GetHealthPercentage()
         {
-            return playerData.GetHealthPercentage();
+            return playerData.currentHealth / playerData.maxHealth;
         }
+        
+        #endregion
     }
 } 

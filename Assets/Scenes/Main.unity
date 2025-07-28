@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 9fc0d4010bbf28b4594072e72b8655ab
+  m_OcclusionCullingData: {fileID: 36300000, guid: c73432845624280408b6f50507c1bfd0, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -2142,6 +2142,8 @@ MonoBehaviour:
   inventoryScreenUI: {fileID: 91983257}
   slotList: []
   itemList: []
+  itemToAdd: {fileID: 0}
+  whatSlotToEquip: {fileID: 0}
   isOpen: 0
   pickupALert: {fileID: 1033298467}
   pickupName: {fileID: 559984911}
@@ -4667,8 +4669,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513cee63059cec04d8bbab4291652529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 0}
   caloriesCounter: {fileID: 1180469510}
   m_playerState: {fileID: 1261613313}
+  currentCalories: 0
+  maxCalories: 0
 --- !u!1 &624122372
 GameObject:
   m_ObjectHideFlags: 0
@@ -4771,8 +4776,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f450147888ae5d140aa96bff9d155981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 0}
   hydrationCounter: {fileID: 1468734242}
   m_playerState: {fileID: 1261613313}
+  currentHydration: 0
+  maxHydration: 0
 --- !u!1001 &629874058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6240,6 +6248,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 50
+  xRotation: 0
+  yRotation: 0
+  isMouseLocked: 1
 --- !u!114 &824810648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6259,8 +6270,9 @@ MonoBehaviour:
   groundCheck: {fileID: 274477197}
   groundDistance: 0.4
   groundMask:
-    serializedVersion: 2
     m_Bits: 8
+  velocity: {x: 0, y: 0, z: 0}
+  isGround: 0
 --- !u!1 &827542797
 GameObject:
   m_ObjectHideFlags: 0
@@ -6880,6 +6892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTarget: 0
   interaction_info_UI: {fileID: 1255102219}
+  interactionText: {fileID: 0}
   selectedGameObject: {fileID: 0}
   centerDotImage: {fileID: 2065059584}
   handIcon: {fileID: 216474219}
@@ -8666,11 +8679,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftingScreenUI: {fileID: 211578855}
   toolsScreenUI: {fileID: 472097077}
+  inventoryItemList: []
   toolsBTN: {fileID: 1982387919}
   craftAxeBTN: {fileID: 1551982402}
   AxeReq1: {fileID: 226100460}
   AxeReq2: {fileID: 1722584083}
   isOpen: 0
+  AxeBLP:
+    <itemName>k__BackingField: Axe
+    <Req1>k__BackingField: Rock
+    <Req2>k__BackingField: Stick
+    <Req1amount>k__BackingField: 3
+    <Req2amount>k__BackingField: 3
+    <numOfRequirements>k__BackingField: 2
 --- !u!4 &1159352201
 Transform:
   m_ObjectHideFlags: 0
@@ -9116,8 +9137,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trashAlertUI: {fileID: 499702627}
+  textToModify: {fileID: 0}
   trash_closedSprite: {fileID: 21300000, guid: c8b22a8a91069cc41aca4e4e3686667b, type: 3}
   trash_openSprite: {fileID: 21300000, guid: 720e446d78046934dafd03eb0f5bac0c, type: 3}
+  imageComponent: {fileID: 0}
+  YesBtn: {fileID: 0}
+  NoBtn: {fileID: 0}
+  itemToBeDeleted: {fileID: 0}
 --- !u!1 &1255102219
 GameObject:
   m_ObjectHideFlags: 0
@@ -9321,6 +9347,8 @@ MonoBehaviour:
   maxHealth: 100
   currentCalories: 0
   maxCalories: 2000
+  distanceTravelled: 0
+  lastPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 824810644}
   currentHydrationPercent: 0
   maxHydrationPercent: 100
@@ -12228,8 +12256,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79fbe3cd2c53b584a889e9a01387b123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 0}
   healthCounter: {fileID: 2045850923}
   m_playerState: {fileID: 1261613313}
+  currentHealth: 0
+  maxHealth: 0
 --- !u!1001 &1693965512
 PrefabInstance:
   m_ObjectHideFlags: 0

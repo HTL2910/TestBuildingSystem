@@ -2,7 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Collections;
-public class PlayerStatus : MonoBehaviour
+using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
+
+public class PlayerStatus : MonoBehaviourPunCallbacks, IPunObservable
 {
     public static PlayerStatus Instance{get;set;}
     [Header("Health")]
@@ -14,6 +18,7 @@ public class PlayerStatus : MonoBehaviour
     float distanceTravelled=0;
     Vector3 lastPosition;
     public GameObject playerBody;
+    public PhotonView photonView;
 
     [Header("Hydration")]
     public float currentHydrationPercent;
@@ -30,6 +35,9 @@ public class PlayerStatus : MonoBehaviour
         {
             Instance=this;
         }
+        
+        // Get PhotonView component
+        if (photonView == null) photonView = GetComponent<PhotonView>();
     }
     void Start()
     {
@@ -53,15 +61,19 @@ public class PlayerStatus : MonoBehaviour
     }
     void Update()
     {
-        distanceTravelled+=Vector3.Distance(playerBody.transform.position,lastPosition);
-        lastPosition=playerBody.transform.position;
-
-        if(distanceTravelled>=5)
+        if (photonView == null) return;
+        
+        if (photonView.IsMine)
         {
-            distanceTravelled=0;
-            currentCalories-=1;
+            distanceTravelled+=Vector3.Distance(playerBody.transform.position,lastPosition);
+            lastPosition=playerBody.transform.position;
+
+            if(distanceTravelled>=5)
+            {
+                distanceTravelled=0;
+                currentCalories-=1;
+            }
         }    
-     
     }
 
     internal void SetHydrations(float maxHydrations)
@@ -77,5 +89,23 @@ public class PlayerStatus : MonoBehaviour
     internal void SetHealth(float maxHealth)
     {
         currentHealth=maxHealth;
+    }
+    
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // Send status data
+            stream.SendNext(currentHealth);
+            stream.SendNext(currentCalories);
+            stream.SendNext(currentHydrationPercent);
+        }
+        else
+        {
+            // Receive status data
+            currentHealth = (float)stream.ReceiveNext();
+            currentCalories = (float)stream.ReceiveNext();
+            currentHydrationPercent = (float)stream.ReceiveNext();
+        }
     }
 }
