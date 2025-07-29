@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 674288886876188370}
   - component: {fileID: 1654688205625117389}
   - component: {fileID: 2535430910486104947}
+  - component: {fileID: 2066213817378765338}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -141,6 +142,33 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2066213817378765338
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2765103624220800644}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8282244944872038545
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +181,8 @@ GameObject:
   - component: {fileID: 8791667246990326526}
   - component: {fileID: 2459738249246973832}
   - component: {fileID: 2491278291235622478}
+  - component: {fileID: 253277138210314799}
+  - component: {fileID: 2541853661428037879}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -238,6 +268,72 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 50
+--- !u!114 &253277138210314799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282244944872038545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 2459738249246973832}
+  - {fileID: 2541853661428037879}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &2541853661428037879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282244944872038545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b093c8cfe22d8e442b4aeeb0bfacfe0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photonView: {fileID: 253277138210314799}
+  rb: {fileID: 2066213817378765338}
+  playerCollider: {fileID: 2535430910486104947}
+  playerData:
+    playerName: Player
+    playerId: -1
+    isReady: 0
+    isAlive: 1
+    score: 0
+    kills: 0
+    deaths: 0
+    assists: 0
+    currentHealth: 100
+    maxHealth: 100
+    currentShield: 0
+    maxShield: 100
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    team: None
+    characterClass: Default
+    level: 1
+    experience: 0
+  moveSpeed: 5
+  jumpForce: 5
+  isGrounded: 1
+  attackRange: 2
+  attackDamage: 25
+  attackCooldown: 1
+  playerUI: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &8634997305179084377
 GameObject:
   m_ObjectHideFlags: 0
