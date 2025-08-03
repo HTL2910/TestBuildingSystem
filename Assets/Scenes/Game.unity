@@ -2425,7 +2425,7 @@ MonoBehaviour:
   inventoryScreenUI: {fileID: 91983257}
   slotList: []
   itemList: []
-  photonView: {fileID: 0}
+  photonView: {fileID: 7699214220588183281}
   isOpen: 0
   pickupALert: {fileID: 1033298467}
   pickupName: {fileID: 559984911}
@@ -6785,7 +6785,7 @@ Transform:
   m_GameObject: {fileID: 789552921}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -230, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9638,7 +9638,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158838211}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -10479,7 +10479,7 @@ MonoBehaviour:
   currentCalories: 0
   maxCalories: 2000
   playerBody: {fileID: 824810644}
-  photonView: {fileID: 0}
+  photonView: {fileID: 7699214220588183281}
   currentHydrationPercent: 0
   maxHydrationPercent: 100
   isHydrationActive: 1
@@ -15319,13 +15319,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945766544}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16859,6 +16859,14 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1654688205625117389, guid: ec98fd6ad7af94d4bbfa52daa550635a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066213817378765338, guid: ec98fd6ad7af94d4bbfa52daa550635a, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 2541853661428037879, guid: ec98fd6ad7af94d4bbfa52daa550635a, type: 3}
       propertyPath: playerUI
       value: 
@@ -16912,6 +16920,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec98fd6ad7af94d4bbfa52daa550635a, type: 3}
+--- !u!114 &7699214220588183281 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 253277138210314799, guid: ec98fd6ad7af94d4bbfa52daa550635a, type: 3}
+  m_PrefabInstance: {fileID: 7699214220588183280}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824810644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
